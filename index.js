@@ -5,6 +5,13 @@ var morgan = require('morgan')
 const cors = require('cors')
 const Person = require('./models/person')
 
+const formatPerson = (person) => {
+  return {
+    name: person.name,
+    number:person.number
+  }
+}
+
 app.use(cors())
 app.use(express.static('build'))
 
@@ -54,8 +61,12 @@ app.get('/info', (req, res) => {
 
 
 
-app.get('/api/persons', (req, res) => {
-  res.json(persons)
+app.get('/api/persons', (request, response) => {
+  Person
+    .find({})
+    .then(persons => {
+      response.json(persons.map(formatPerson))
+    })
 })
 
 app.get('/api/persons/:id', (request, response) => {
