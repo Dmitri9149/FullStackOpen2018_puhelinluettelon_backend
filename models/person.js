@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+//the database does not exist 
 const url = 'mongodb://puhelinluettelo_dmitri:secret_password@ds247121.mlab.com:47121/puhelinluettelo'
 
 mongoose.connect(url, { useNewUrlParser: true })
